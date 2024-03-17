@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">RetrofitPUTLearning</string>
+    <string name="app_name">Retrofit Basics</string>
+    <string name="deleteorupdate">Want TO Delete OR Update Data?\n Click Here</string>
+    <string name="existingdata">Want To See All \nExisting Data? \nClick Here</string>
 </resources>

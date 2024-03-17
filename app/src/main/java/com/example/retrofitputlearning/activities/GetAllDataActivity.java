@@ -26,22 +26,19 @@ public class GetAllDataActivity extends AppCompatActivity {
     GettingAllDataRecyclerAdapter adapter;
     List<DataModel> listDataModelsEntities;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_get_all_data);
 
-
         listDataModelsEntities = new ArrayList<>();
-
         recyclerView = findViewById(R.id.recyclerView);
-
         getAllUsers();
 
+    }//ON CREATE ENDS HERE
 
-    }
     void getAllUsers() {
+
         Retrofit retrofit = new Retrofit.Builder().baseUrl(RetrofitAPI_NetworkCall.BASE_URL).addConverterFactory(GsonConverterFactory.create()).build();
         RetrofitAPI_NetworkCall networkCall = retrofit.create(RetrofitAPI_NetworkCall.class);
         Call<List<DataModel>> call = networkCall.getAllData();
@@ -51,25 +48,18 @@ public class GetAllDataActivity extends AppCompatActivity {
             public void onResponse(Call<List<DataModel>> call, Response<List<DataModel>> response) {
                 if (response.isSuccessful()) {
                     if (response.body() != null) {
-
                         listDataModelsEntities = response.body();
-
                         for (int i = 0; i < listDataModelsEntities.size(); i++) {
-
                             adapter = new GettingAllDataRecyclerAdapter(getApplicationContext(), listDataModelsEntities);
                             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                             recyclerView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
                         }
-
                     }
-
                 }
             }
-
             @Override
             public void onFailure(Call<List<DataModel>> call, Throwable t) {
-
             }
         });
     }

@@ -2,7 +2,7 @@ package com.example.retrofitputlearning.models;
 
 public class DataModel {
     // in the below line, we are creating
-    // variables for name and job
+    // variables for email and name, id
     String email;
     String name;
     long id;
