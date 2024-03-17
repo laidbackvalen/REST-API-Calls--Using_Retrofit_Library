@@ -51,7 +51,7 @@ public class CreateUserActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if (TextUtils.isEmpty(nameinputEditxt.getText().toString().trim()) || TextUtils.isEmpty(emailinputEditxt.getText().toString().trim())) {
-                    emailinputEditxt.setError("ake sure all field are not left Empty");
+                    emailinputEditxt.setError("Make sure all field are not left Empty");
                     return;
                 }
                 //Create Function Call
@@ -71,16 +71,30 @@ public class CreateUserActivity extends AppCompatActivity {
     //CREATE USER FUNCTION USING RETROFIT
     private void createUser() {
 
-        Retrofit retrofit = new Retrofit.Builder()
+        Retrofit retrofit = new Retrofit.Builder() // creates a new instance of the Retrofit builder.
                 .baseUrl(RetrofitAPI_NetworkCall.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+                //.addConverterFactory - creates a Gson converter factory instance.
+                .addConverterFactory(GsonConverterFactory.create())  //is where you specify that Gson will be used to convert JSON data to Java objects and vice versa.
+                //GsonConverterFactory.create() - creates a Gson converter factory instance.
+                //This converter factory takes care of converting JSON response bodies into Java objects and vice versa
+                .build(); // builds the Retrofit instance with the configured settings.
 
-        RetrofitAPI_NetworkCall networkCall = retrofit.create(RetrofitAPI_NetworkCall.class);
+        //Once you have the Retrofit instance, you can use it to create service interfaces (RetrofitAPI_NetworkCall)
+        //that define your API endpoints and make network requests using these interfaces.
+
+
+        RetrofitAPI_NetworkCall networkCall = retrofit.create(RetrofitAPI_NetworkCall.class);  // retrofit.create() here is a method provided by Retrofit
+                                                                                              // that creates an implementation of the specified interface.
+
+       //networkCall is the object created by Retrofit, which will be used to make network calls to the defined endpoints.
+      //For example, if RetrofitAPI_NetworkCall contains a method getData(), you would call it
 
         Retrofit_ResponseModel retrofitResponseModel = new Retrofit_ResponseModel(nameinputEditxt.getText().toString().trim(), emailinputEditxt.getText().toString().trim());
-        Call<Retrofit_ResponseModel> call = networkCall.createData(retrofitResponseModel);
 
+        Call<Retrofit_ResponseModel> call = networkCall.createData(retrofitResponseModel);  //This method is likely used to make a network request to create some data on the server.
+
+
+        //call.enqueue() is a method that executes the network call asynchronously, meaning it doesn't block the main thread.
         call.enqueue(new Callback<Retrofit_ResponseModel>() {
             @SuppressLint("ResourceAsColor")
             @Override

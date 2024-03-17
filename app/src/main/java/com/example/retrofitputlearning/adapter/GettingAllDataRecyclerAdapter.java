@@ -18,11 +18,9 @@ public class GettingAllDataRecyclerAdapter extends RecyclerView.Adapter<GettingA
     Context context;
     List<DataModel> arrdatamodelEntities;
 
-
     public GettingAllDataRecyclerAdapter(Context context, List<DataModel> arrdatamodelEntitiesList) {
         this.context = context;
         this.arrdatamodelEntities = arrdatamodelEntitiesList;
-
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -30,10 +28,8 @@ public class GettingAllDataRecyclerAdapter extends RecyclerView.Adapter<GettingA
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             name = itemView.findViewById(R.id.nameDataLayout);
             email = itemView.findViewById(R.id.emailDataLayout);
-
         }
     }
 
@@ -47,16 +43,12 @@ public class GettingAllDataRecyclerAdapter extends RecyclerView.Adapter<GettingA
 
     @Override
     public void onBindViewHolder(@NonNull GettingAllDataRecyclerAdapter.ViewHolder holder, int position) {
-
         holder.name.setText(arrdatamodelEntities.get(position).getName());
         holder.email.setText(arrdatamodelEntities.get(position).getEmail());
-
     }
 
     @Override
     public int getItemCount() {
         return arrdatamodelEntities.size();
     }
-
-
 }
